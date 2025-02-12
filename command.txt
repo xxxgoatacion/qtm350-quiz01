@@ -1,0 +1,233 @@
+## Quiz 01 - Forking and Enhancing an Existing GitHub Repository
+
+### Instructions
+
+Please complete the following tasks using command-line operations and Git
+commands as covered in Lectures 02 to 06. Paste all commands in a file named
+`commands.txt`(or a Jupyter Notebook named `commands.ipynb`) located in the
+repository's root directory. The final repository on GitHub should reflect all
+changes made, and the `commands.txt` file should contain a list
+of all commands used throughout the project.
+
+Please send the link to your repository as a message on Canvas in the "Assignments" tab. There is a link for Quiz 01.
+
+### Tasks
+
+1. Fork this repository to your GitHub account.
+2. Clone your forked repository to your local machine using the command line.
+3. Change directory into the cloned repository.
+4. Create a file named `commands.txt` (or `command.ipynb`) in the root of the repository to document all commands used throughout the project.
+5. Create and switch to a new branch named `feature-update`.
+6. Create a new directory called `reports` within the repository.
+7. Inside the `reports` directory, create an empty file named `summary.md` using the command line.
+8. Use a command to add the following line to `summary.md`: `This document provides a summary of the project updates.`
+9. Add the newly created reports directory.
+10. Commit the changes with the message "Add reports directory".
+11. Create three empty text files named `file1.txt`, `file2.txt`, and `file3.txt` in the `reports` folder _using a single command with brace expansion_.
+12. Rename the file `data/raw-data.csv` to `data/input-data.csv`.
+13. Create a new directory named `backup` inside the `scripts` directory, then copy all `.py` files from the `scripts` directory to the newly created `backup` directory. _Use wildcards to copy the files and chain both commands in a single line of code_.
+14. Delete the `docs/documentation.md` file.
+15. Stage and commit all changes so far. Add the message "Update project files".
+16. Create a new file named `.gitignore` in the root of the repository.
+17. Add the following lines to `.gitignore` using the command line: 
+temp/
+dataset0?.csv
+18. Read the contents of your .gitignore file using the command line.
+19. Stage and commit the .gitignore file with the message "Add .gitignore file". Use only one line to do both.
+20. Switch back to the main branch and merge the feature-update branch into main.
+21. Update the commands.txt file with all commands used so far, stage the file, commit it with a descriptive message, and push all changes to your forked GitHub repository
+
+
+
+1. Fork this repository to your GitHub account.
+xiaob@pppppeterg MINGW64 ~ (master)
+$ git clone http://github.com/xxxgoatacion/qtm350-quiz01.git
+Cloning into 'qtm350-quiz01'...
+warning: redirecting to https://github.com/xxxgoatacion/qtm350-quiz01.git/
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 8 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (8/8), done.
+
+3. Change directory into the cloned repository.
+xiaob@pppppeterg MINGW64 ~ (master)
+$ cd qtm350-quiz01
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (main)
+$ ^C
+
+4. Create a file named `commands.txt` (or `command.ipynb`) in the root of the repository to document all commands used throughout the project.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (main)
+$ touch command.txt
+
+5. Create and switch to a new branch named `feature-update`.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        command.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (main)
+$ git checkout -b feature-update
+Switched to a new branch 'feature-update'
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$
+
+6. Create a new directory called `reports` within the repository.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ mkdir reports
+
+7. Inside the `reports` directory, create an empty file named `summary.md` using the command line.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ touch reports/summary.md
+
+8. Use a command to add the following line to `summary.md`: `This document provides a summary of the project updates.`
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ echo "This documents provides a summary of the project updates." > reports/summary.md
+
+9. Add the newly created reports directory.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git add reports
+warning: in the working copy of 'reports/summary.md', LF will be replaced by CRLF the next time Git touches it
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git status
+On branch feature-update
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   reports/summary.md
+
+10. Commit the changes with the message "Add reports directory".
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git commit -m "Add reports directory"
+[feature-update b9a6886] Add reports directory
+ 1 file changed, 1 insertion(+)
+ create mode 100644 reports/summary.md
+
+11. Create three empty text files named `file1.txt`, `file2.txt`, and `file3.txt` in the `reports` folder _using a single command with brace expansion_.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ touch reports/file{1..3}.txt
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ ls reports
+file1.txt  file2.txt  file3.txt  summary.md
+
+12. Rename the file `data/raw-data.csv` to `data/input-data.csv`.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git mv data/raw-data.csv data/input-data.csv
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git status
+On branch feature-update
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    data/raw-data.csv -> data/input-data.csv
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        command.txt
+        reports/file1.txt
+        reports/file2.txt
+        reports/file3.txt
+
+13. Create a new directory named `backup` inside the `scripts` directory, then copy all `.py` files from the `scripts` directory to the newly created `backup` directory. _Use wildcards to copy the files and chain both commands in a single line of code_.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ mkdir scripts/backup && cp scripts/*.py scripts/backup/
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ ls scripts/backup
+01-setup.py  02-data-cleaning.py  03-data-modelling.py
+
+14. Delete the `docs/documentation.md` file.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ rm docs/documentation.md
+
+15. Stage and commit all changes so far. Add the message "Update project files".
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git add .
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git commit -m"Update project files"
+[feature-update 9ffb0df] Update project files
+ 9 files changed, 1 deletion(-)
+ rename data/raw-data.csv => command.txt (100%)
+ create mode 100644 data/input-data.csv
+ delete mode 100644 docs/documentation.md
+ create mode 100644 reports/file1.txt
+ create mode 100644 reports/file2.txt
+ create mode 100644 reports/file3.txt
+ create mode 100644 scripts/backup/01-setup.py
+ create mode 100644 scripts/backup/02-data-cleaning.py
+ create mode 100644 scripts/backup/03-data-modelling.py
+
+16. Create a new file named `.gitignore` in the root of the repository.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ touch .gitinore
+
+17. Add the following lines to `.gitignore` using the command line: 
+temp/
+dataset0?.csv
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ echo "temp/">> .gitignore
+
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ echo "dataset0?.csv">> .gitignore
+
+18. Read the contents of your .gitignore file using the command line.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ cat .gitignore
+temp/
+dataset0?.csv
+
+19. Stage and commit the .gitignore file with the message "Add .gitignore file". Use only one line to do both.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git add .gitignore && git commit -m"Add .gitignore file"
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+[feature-update 873bbf7] Add .gitignore file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
+
+20. Switch back to the main branch and merge the feature-update branch into main.
+xiaob@pppppeterg MINGW64 ~/qtm350-quiz01 (feature-update)
+$ git checkout main && git merge feature-update
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Updating 4258465..873bbf7
+Fast-forward
+ .gitignore                          | 2 ++
+ data/raw-data.csv => command.txt    | 0
+ data/input-data.csv                 | 0
+ docs/documentation.md               | 1 -
+ reports/file1.txt                   | 0
+ reports/file2.txt                   | 0
+ reports/file3.txt                   | 0
+ reports/summary.md                  | 1 +
+ scripts/backup/01-setup.py          | 0
+ scripts/backup/02-data-cleaning.py  | 0
+ scripts/backup/03-data-modelling.py | 0
+ 11 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 .gitignore
+ rename data/raw-data.csv => command.txt (100%)
+ create mode 100644 data/input-data.csv
+ delete mode 100644 docs/documentation.md
+ create mode 100644 reports/file1.txt
+ create mode 100644 reports/file2.txt
+ create mode 100644 reports/file3.txt
+ create mode 100644 reports/summary.md
+ create mode 100644 scripts/backup/01-setup.py
+ create mode 100644 scripts/backup/02-data-cleaning.py
+ create mode 100644 scripts/backup/03-data-modelling.py
+
+21. Update the commands.txt file with all commands used so far, stage the file, commit it with a descriptive message, and push all changes to your forked GitHub repository
+mv ~/Desktop/commands.txt ~/qtm350-quiz01/
+cd ~/qtm350-quiz01
+git add commands.txt
+git commit -m "Update commands.txt"
+git push origin main
